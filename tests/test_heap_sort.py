@@ -27,37 +27,37 @@ def test_right():
 
 def test_max_heapfy_when_parent_is_largest_1():
     H = [3, 1, 2]
-    max_heapfy(H, 1)
+    max_heapfy(H, 1, 3)
     assert H == [3, 1, 2]
 
 
 def test_max_heapfy_when_parent_is_largest_2():
     H = [3, 2, 1]
-    max_heapfy(H, 1)
+    max_heapfy(H, 1, 3)
     assert H == [3, 2, 1]
 
 
 def test_max_heapfy_when_left_is_largest_1():
     H = [1, 3, 2]
-    max_heapfy(H, 1)
+    max_heapfy(H, 1, 3)
     assert H == [3, 1, 2]
 
 
 def test_max_heapfy_when_left_is_largest_2():
     H = [2, 3, 1]
-    max_heapfy(H, 1)
+    max_heapfy(H, 1, 3)
     assert H == [3, 2, 1]
 
 
 def test_max_heapfy_when_right_is_largest_1():
     H = [2, 1, 3]
-    max_heapfy(H, 1)
+    max_heapfy(H, 1, 3)
     assert H == [3, 1, 2]
 
 
 def test_max_heapfy_when_right_is_largest_2():
     H = [1, 2, 3]
-    max_heapfy(H, 1)
+    max_heapfy(H, 1, 3)
     assert H == [3, 2, 1]
 
 
@@ -85,5 +85,19 @@ def test_max_heapfy():
     """
     E = [16, 14, 10, 8, 7, 9, 3, 2, 4, 1]
 
-    max_heapfy(H, 2)
+    max_heapfy(H, 2, 10)
     assert H == E
+
+
+def test_build_max_heap():
+    # See: Page 129
+    A = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
+    build_max_heap(A)
+    assert A == [16, 14, 10, 8, 7, 9, 3, 2, 4, 1]
+
+
+def test_heap_sort():
+    A = [5, 3, 2, 7, 10, 9, 3]
+    E = [2, 3, 3, 5, 7, 9, 10]
+    heap_sort(A)
+    assert A == E
