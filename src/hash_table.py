@@ -74,5 +74,22 @@ class HashTable:
         )
 
 
+def gen_division_hash(m: int):
+    def h(k: int):
+        return k % m
+    return h
+
+
+def gen_multiplication_hash(m: int):
+    # 0 < A < 1
+    # A should be "s / 2^ω" (0 < s < 2^ω)
+    # Knuth suggests the (5^0.5 - 2) / 2 is reasonable.
+    A = 2654435769.0 / (2 ^ 32)
+
+    def h(k: int):
+        return int((k * A % 1) * m)
+    return h
+
+
 if __name__ == '__main__':
     print('x')
