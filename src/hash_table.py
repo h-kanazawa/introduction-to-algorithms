@@ -30,6 +30,16 @@ def gen_lenear_probing(m: int, f):
     return h
 
 
+def gen_quadratic_probing(m: int, f, c1, c2):
+    """
+    f: auxiliary hash function
+    if m is 2^n, c1 = c2 = 1/2 is good
+    """
+    def h(k: int, i: int):
+        return (f(k) + c1 * i + c2 * i * i) % m
+    return h
+
+
 class X:
     def __init__(self, k, v):
         self.key = k
