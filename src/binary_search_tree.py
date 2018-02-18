@@ -10,20 +10,20 @@ class X:
         self.p = parent
 
     def stringify(self):
-        return 'k:{}, v:{}, l:{}, r:{}, has_p:{}'.format(
-            self.k, self.v, self.l, self.r, self.p is not None)
+        return 'k:{}, v:{}, l:{}, r:{}, p:{}'.format(
+            self.k, self.v, self.l and self.l.k, self.r and self.r.k, self.p and self.p.k)
 
     def __str__(self):
         return self.stringify()
+
+    def __eq__(self, other):
+        return type(self) == type(other) and self.stringify() == other.stringify()
 
 
 class BinarySearchTree:
 
     def __init__(self):
         self.root = None
-
-    def __eq__(self, other):
-        return type(self) == type(other) and self.k == other.k
 
     def inorder_tree_walk(self, x):
         if x is None:
@@ -66,6 +66,27 @@ class BinarySearchTree:
             x = y
             y = y.p
         return y
+
+    def insert(self, z: X):
+        """Ignore z's left, right, and parent
+        """
+        y = None
+        x = self.root
+        while x is not None:
+            y = x
+            if z.k == x.k:
+                raise Exception('the key of z has existed in the tree')
+            elif z.k < x.k:
+                x = x.l
+            else:
+                x = x.r
+        z.p = y
+        if y is None:
+            self.root = z
+        elif z.k < y.k:
+            y.l = z
+        else:
+            y.r = z
 
 
 if __name__ == '__main__':

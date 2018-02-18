@@ -72,3 +72,15 @@ def test_successor():
     assert bst.successor(x2) == x3
     assert bst.successor(x3) == x4
     assert bst.successor(x4) is None
+
+
+def test_insert():
+    bst, x1, x2, x3, x4 = gen_tree()
+    x0 = X(0, '0', None, None, None)
+    bst.insert(x0)
+    assert x0 == X(0, '0', None, None, x1)
+    assert x1 == X(1, '10', x0, None, x2)
+    x5 = X(5, '50', None, None, None)
+    bst.insert(x5)
+    assert x5 == X(5, '50', None, None, x4)
+    assert x4 == X(4, '40', x2, x5, None)
