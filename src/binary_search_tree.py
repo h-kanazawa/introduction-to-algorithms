@@ -68,8 +68,10 @@ class BinarySearchTree:
         return y
 
     def insert(self, z: X):
-        """Ignore z's left, right, and parent
-        """
+        # Ignore z's left, right, and parent
+        z.l = None
+        z.r = None
+        z.p = None
         y = None
         x = self.root
         while x is not None:
@@ -87,6 +89,35 @@ class BinarySearchTree:
             y.l = z
         else:
             y.r = z
+
+    def delete(self, key):
+        z = self.search(self.root, key)
+        if z is None:
+            raise Exception('the key is not found in the tree')
+        if z.l is None:
+            self.transplant(z, z.r)
+        elif z.r is None:
+            self.transplant(z, z.l)
+        else:
+            y = self.minimum(z.r)
+            if y.p != z:
+                self.transplant(y, y.r)
+                y.r = z.r
+                y.r.p = y
+            self.transplant(z, y)
+            y.l = z.l
+            y.l.p = y
+
+    def transplant(self, u, v):
+        if u.p is None:
+            self.root = v
+        elif u == u.p.l:
+            u.p.l = v
+        else:
+            u.p.r = v
+
+        if v is not None:
+            v.p = u.p
 
 
 if __name__ == '__main__':
