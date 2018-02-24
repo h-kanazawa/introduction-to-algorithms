@@ -41,11 +41,12 @@ if __name__ == '__main__':
     P0xP1 P1xP2 P2xP3 ... Pn-1xPn
     p = [P0, P1, ..., Pn]
     """
-    p = [30, 35, 15, 5, 10, 20, 25]
-    (m, s) = matrix_chain_order(p)
-
     def g(x):
         return '{0:6d}'.format(x)
+
+    p = [30, 35, 15, 5, 10, 20, 25]
+    # p = [5, 10, 3, 12, 5, 50, 6]
+    (m, s) = matrix_chain_order(p)
 
     print('m')
     print('\n'.join(map(lambda a: ' '.join(map(g, a)), m)))
