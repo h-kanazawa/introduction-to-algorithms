@@ -67,6 +67,63 @@ class RedBlackTree:
         x.r = y
         y.p = x
 
+    def insert(self, z):
+        y = self.nil
+        x = self.root
+        while x != self.nil:
+            y = x
+            if z.k == x.k:
+                raise Exception('the key of z has existed in the tree')
+            elif z.k < x.k:
+                x = x.l
+            else:
+                x = x.r
+        # At this point, x is T.nil, and y is the future parent of z
+        z.p = y
+        if y == self.nil:
+            self.root = z
+        elif z.key < y.key:
+            y.l = z
+        else:
+            y.r = z
+        z.l = self.nil
+        z.r = self.nil
+        z.c = R
+        self.insert_fixup(z)
+
+    def insert_fixup(self, z):
+        while z.p.c == R:
+            if z.p == z.p.p.l:
+                y = z.p.p.r
+                if y.c == R:
+                    z.p.c = B
+                    y.c = B
+                    z.p.p.c = R
+                    z = z.p.p
+                else:
+                    if z == z.p.r:
+                        z = z.p
+                        self.left_rotate(z)
+                    z.p.c = B
+                    z.p.p.c = R
+                    self.right_rotate(z.p.p)
+            else:
+                # z.p == z.p.p.r
+                y = z.p.p.l
+                if y.c == R:
+                    z.p.c = B
+                    y.c = B
+                    z.p.p.c = R
+                    z = z.p.p
+                else:
+                    if z == z.p.l:
+                        z = z.p
+                        self.right_rotate(z)
+                    z.p.c = B
+                    z.p.p.c = R
+                    self.left_rotate(z.p.p)
+        self.root.c = B
+
 
 if __name__ == '__main__':
     print('x')
