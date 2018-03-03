@@ -18,7 +18,6 @@ def quick_sort(A: List[float], p: int, r: int):
 
 def partition(A: List[float], p: int, r: int):
     """O(n)
-    This function is not pure. it has "effect".
     """
     x = A[r - 1]
     i = p - 1

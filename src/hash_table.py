@@ -11,9 +11,11 @@ def gen_division_hash(m: int):
 
 
 def gen_multiplication_hash(m: int):
-    # 0 < A < 1
-    # A should be "s / 2^ω" (0 < s < 2^ω)
-    # Knuth suggests the (5^0.5 - 2) / 2 is reasonable.
+    """
+    0 < A < 1
+    A should be "s / 2^ω" (0 < s < 2^ω)
+    Knuth suggests the (5^0.5 - 2) / 2 is reasonable.
+    """
     A = 2654435769.0 / (2 ^ 32)
 
     def h(k: int):

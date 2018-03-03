@@ -32,7 +32,6 @@ def right(i):
 
 def max_heapfy(A: List[int], i: int, heap_size: int):
     """O(ln (n))
-    This function is not pure. it has "effect".
     """
     l = left(i)
     r = right(i)
@@ -58,7 +57,6 @@ def max_heapfy(A: List[int], i: int, heap_size: int):
 
 def build_max_heap(A: List[int]):
     """O(n ln(n))
-    This function is not pure. it has "effect".
     """
     for i in range(len(A) >> 1, 0, -1):
         max_heapfy(A, i, len(A))

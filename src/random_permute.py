@@ -16,13 +16,15 @@ def permute_by_sorting(A: List[float]):
     return sorted_by_rank(A, R)
 
 
-# Ω(n ln(n))
 def sorted_by_rank(L: List[float], R: List[int]) -> List[float]:
+    """Ω(n ln(n))
+    """
     return [b[0] for b in sorted(zip(L, R), key=lambda a: a[1])]
 
 
-# Θ(n)
 def randomize_in_place(A: List[float]):
+    """Θ(n)
+    """
     n = len(A)
     for i in range(0, n):
         # Change A[i] and A[random int from i to n -1]
@@ -34,9 +36,10 @@ def randomize_in_place(A: List[float]):
     return A
 
 
-# 5.3-2
-# This algorithm is not random permutation
 def permute_without_identity(A: List[float]):
+    """5.3-2
+    This algorithm is not random permutation
+    """
     n = len(A)
     for i in range(0, n - 1):
         # Change A[i] and A[random int from i to n -1]
@@ -48,9 +51,10 @@ def permute_without_identity(A: List[float]):
     return A
 
 
-# 5.3-3
-# This algorithm is not random permutation
 def permute_with_all(A: List[float]):
+    """5.3-3
+    This algorithm is not random permutation
+    """
     n = len(A)
     for i in range(0, n):
         # Change A[i] and A[random int from i to n -1]
@@ -62,9 +66,10 @@ def permute_with_all(A: List[float]):
     return A
 
 
-# 5.3-7
-# Be careful RecursionError
 def random_smple(m: int, n: int) -> List[int]:
+    """5.3-7
+    Be careful RecursionError
+    """
     if m > n or m < 0:
         raise Exception('0 <= m <= n')
 

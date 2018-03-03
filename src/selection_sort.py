@@ -3,18 +3,20 @@
 from typing import List
 
 
-# 2.2-2 selection sort
 def sort(arr: List[int]) -> List[int]:
+    """2.2-2
+    selection sort
+    """
     m = len(arr)
     for j in range(0, m - 1):
 
-        # arr[j] ~ arr[m] の中の最小値を見つける
+        # Fine minimum value in arr[j] ~ arr[m]
         key = j
         for i in range(j + 1, m):
             if arr[i] < arr[key]:
                 key = i
 
-        # 最小値とarr[j]を交換する
+        # Change minimum value and arr[j]
         t = arr[j]
         arr[j] = arr[key]
         arr[key] = t

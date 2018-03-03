@@ -5,8 +5,9 @@ from math import floor
 from copy import deepcopy
 
 
-# merge sort
 def sort(A: List[float]) -> List[float]:
+    """merge sort
+    """
     return _sort(A, 0, len(A) - 1)
 
 
@@ -20,9 +21,10 @@ def _sort(A: List[float], p: int, r: int):
         return A
 
 
-# p <= p <= r
-# A[p..q] and A[q+1..r] have been sorted
 def merge(A: List[float], p: int, q: int, r: int) -> List[float]:
+    """p <= p <= r
+    A[p..q] and A[q+1..r] have been sorted
+    """
     # The number of elements of A[p..q] and A[q+1..r]
     n1 = q - p + 1
     n2 = r - q

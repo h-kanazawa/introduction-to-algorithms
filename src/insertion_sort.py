@@ -3,8 +3,9 @@
 from typing import List
 
 
-# insertion sort
 def sort(arr: List[int]) -> List[int]:
+    """insertion sort
+    """
     for j in range(1, len(arr)):
         key = arr[j]
         i = j - 1
@@ -16,8 +17,9 @@ def sort(arr: List[int]) -> List[int]:
     return arr
 
 
-# 2.1-2
 def desc_sort(arr: List[int]) -> List[int]:
+    """2.1-2
+    """
     for j in range(1, len(arr)):
         key = arr[j]
         i = j - 1

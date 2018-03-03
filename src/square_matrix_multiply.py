@@ -17,10 +17,11 @@ def product(A, B):
     return C
 
 
-# 4.2-2
-# The case when n = 2^m (m ∈ natural numbers)
-# T(n) = Θ(n^log(2)7) ~= Θ(n^2.807...)
 def strassen(A, B):
+    """4.2-2
+    The case when n = 2^m (m ∈ natural numbers)
+    T(n) = Θ(n^log(2)7) ~= Θ(n^2.807...)
+    """
     n = A.shape[0]
 
     # Check n is a 2^m (m ∈ natural numbers)
