@@ -7,6 +7,7 @@ def cut_rod(p: List[float], n: int):
     """
     O(2^n)
     p is prices. p[i]
+    15.1
     """
     if len(p) < n:
         raise Exception('length of "p" must be no less than "n"')

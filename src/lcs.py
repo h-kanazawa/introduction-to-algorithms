@@ -2,6 +2,10 @@
 
 
 def lcs_length(x, y):
+    """
+    15.4
+    Longest Common Subsequence
+    """
     m = len(x)
     n = len(y)
     b = [[0 for i in range(n)] for j in range(m)]
