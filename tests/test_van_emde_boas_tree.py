@@ -127,4 +127,21 @@ def test_member():
     assert vEB.member(15) == True
 
 
-
+def test_member():
+    vEB = gen_tree()
+    assert vEB.successor(0) == 2
+    assert vEB.successor(1) == 2
+    assert vEB.successor(2) == 3
+    assert vEB.successor(3) == 4
+    assert vEB.successor(4) == 5
+    assert vEB.successor(5) == 7
+    assert vEB.successor(6) == 7
+    assert vEB.successor(7) == 14
+    assert vEB.successor(8) == 14
+    assert vEB.successor(9) == 14
+    assert vEB.successor(10) == 14
+    assert vEB.successor(11) == 14
+    assert vEB.successor(12) == 14
+    assert vEB.successor(13) == 14
+    assert vEB.successor(14) == 15
+    assert vEB.successor(15) == None

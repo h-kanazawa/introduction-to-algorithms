@@ -55,6 +55,30 @@ class VanEmdeBoas:
         else:
             return self.cluster[self.high(x)].member(self.low(x))
 
+    def successor(self, x):
+        """O(loglog(u))
+        """
+        if self.u == 2:
+            if x == 0 and self.max == 1:
+                return 1
+            else:
+                return None
+        elif self.min is not None and x < self.min:
+            return self.min
+        else:
+            # max value of cluster having x
+            max_low = self.cluster[self.high(x)].max
+            if max_low is not None and self.low(x) < max_low:
+                offset = self.cluster[self.high(x)].successor(self.low(x))
+                return self.index(self.high(x), offset)
+            else:
+                succ_cluster = self.summary.successor(self.high(x))
+                if succ_cluster is None:
+                    return None
+                else:
+                    offset = self.cluster[succ_cluster].min
+                    return self.index(succ_cluster, offset)
+
 
 if __name__ == '__main__':
     print('x')
