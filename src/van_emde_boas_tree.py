@@ -79,6 +79,32 @@ class VanEmdeBoas:
                     offset = self.cluster[succ_cluster].min
                     return self.index(succ_cluster, offset)
 
+    def predecessor(self, x):
+        """O(loglog(u))
+        """
+        if self.u == 2:
+            if x == 1 and self.min == 0:
+                return 0
+            else:
+                return None
+        elif self.max is not None and x > self.max:
+            return self.max
+        else:
+            min_low = self.cluster[self.high(x)].min
+            if min_low is not None and self.low(x) > min_low:
+                offset = self.cluster[self.high(x)].predecessor(self.low(x))
+                return self.index(self.high(x), offset)
+            else:
+                pred_cluster = self.summary.predecessor(self.high(x))
+                if pred_cluster is None:
+                    if self.min is not None and x > self.min:
+                        return self.min
+                    else:
+                        return None
+                else:
+                    offset = self.cluster[pred_cluster].max
+                    return self.index(pred_cluster, offset)
+
 
 if __name__ == '__main__':
     print('x')
