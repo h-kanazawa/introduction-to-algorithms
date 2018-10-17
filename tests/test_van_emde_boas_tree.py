@@ -64,6 +64,8 @@ def test_init():
     assert vEB.summary.cluster[0].summary == None
     assert vEB.summary.cluster[0].cluster == None
 
+    assert vEB.get_as_list() == []
+
 
 def gen_tree():
     """Page 456 Fig. 20.6
@@ -125,6 +127,7 @@ def test_member():
     assert vEB.member(13) == False
     assert vEB.member(14) == True
     assert vEB.member(15) == True
+    assert vEB.get_as_list() == [2, 3, 4, 5, 7, 14, 15]
 
 
 def test_successor():
@@ -173,14 +176,40 @@ def test_insert():
     assert vEB.member(9) == True
     assert vEB.successor(7) == 9
     assert vEB.predecessor(12) == 9
+    assert vEB.get_as_list() == [2, 3, 4, 5, 7, 9, 14, 15]
 
     vEB.insert(0)
     assert vEB.min == 0
     assert vEB.member(0) == True
     assert vEB.successor(0) == 2
     assert vEB.predecessor(2) == 0
+    assert vEB.get_as_list() == [0, 2, 3, 4, 5, 7, 9, 14, 15]
 
     vEB.insert(10)
     assert vEB.member(10) == True
     assert vEB.successor(9) == 10
     assert vEB.predecessor(12) == 10
+    assert vEB.get_as_list() == [0, 2, 3, 4, 5, 7, 9, 10, 14, 15]
+
+
+
+
+def test_delete():
+    vEB = gen_tree()
+    vEB.delete(3)
+    assert vEB.member(3) == False
+    assert vEB.successor(2) == 4
+    assert vEB.predecessor(4) == 2
+    assert vEB.get_as_list() == [2, 4, 5, 7, 14, 15]
+
+    vEB.delete(15)
+    assert vEB.max == 14
+    assert vEB.member(15) == False
+    assert vEB.successor(14) == None
+    assert vEB.get_as_list() == [2, 4, 5, 7, 14]
+
+    vEB.delete(2)
+    assert vEB.min == 4
+    assert vEB.member(2) == False
+    assert vEB.successor(0) == 4
+    assert vEB.get_as_list() == [4, 5, 7, 14]

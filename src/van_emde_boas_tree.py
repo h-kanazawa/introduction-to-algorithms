@@ -47,6 +47,17 @@ class VanEmdeBoas:
         self.summary = VanEmdeBoas(fu)
         self.cluster = [VanEmdeBoas(fu) for i in range(0, fu)]
 
+    def __str__(self):
+        self.get_as_list()
+
+    def get_as_list(self):
+        a = []
+        curr = self.min
+        while curr is not None:
+            a.append(curr)
+            curr = self.successor(curr)
+        return a
+
     def member(self, x):
         if x == self.min or x == self.max:
             return True
@@ -128,6 +139,35 @@ class VanEmdeBoas:
 
             if x > self.max:
                 self.max = x
+
+    def delete(self, x):
+        if self.min == self.max:
+            self.min = None
+            self.max = None
+        elif self.u == 2:
+            if x == 0:
+                self.min = 1
+            else:
+                self.min = 0
+            self.max = self.min
+        else:
+            if x == self.min:
+                first_cluster = self.summary.min
+                x = self.index(first_cluster, self.cluster[first_cluster].min)
+                self.min = x
+            self.cluster[self.high(x)].delete(self.low(x))
+
+            if self.cluster[self.high(x)].min is None:
+                self.summary.delete(self.high(x))
+
+                if x == self.max:
+                    summary_max = self.summary.max
+                    if summary_max is None:
+                        self.max = self.min
+                    else:
+                        self.max = self.index(summary_max, self.cluster[summary_max].max)
+            elif x == self.max:
+                self.max = self.index(self.high(x), self.cluster[self.high(x)].max)
 
 
 if __name__ == '__main__':
