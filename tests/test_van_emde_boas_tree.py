@@ -165,3 +165,22 @@ def test_predecessor():
     assert vEB.predecessor(13) == 7
     assert vEB.predecessor(14) == 7
     assert vEB.predecessor(15) == 14
+
+
+def test_insert():
+    vEB = gen_tree()
+    vEB.insert(9)
+    assert vEB.member(9) == True
+    assert vEB.successor(7) == 9
+    assert vEB.predecessor(12) == 9
+
+    vEB.insert(0)
+    assert vEB.min == 0
+    assert vEB.member(0) == True
+    assert vEB.successor(0) == 2
+    assert vEB.predecessor(2) == 0
+
+    vEB.insert(10)
+    assert vEB.member(10) == True
+    assert vEB.successor(9) == 10
+    assert vEB.predecessor(12) == 10

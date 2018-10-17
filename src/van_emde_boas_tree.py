@@ -5,19 +5,19 @@ from math import floor, fmod
 
 def high(u):
     def f(x):
-        return floor(x / floor(u ** 0.5))
+        return int(floor(x / floor(u ** 0.5)))
     return f
 
 
 def low(u):
     def f(x):
-        return fmod(x, floor(u ** 0.5))
+        return int(fmod(x, floor(u ** 0.5)))
     return f
 
 
 def index(u):
     def f(x, y):
-        return x * floor(u ** 0.5) + y
+        return int(x * floor(u ** 0.5) + y)
     return f
 
 
@@ -76,6 +76,7 @@ class VanEmdeBoas:
                 if succ_cluster is None:
                     return None
                 else:
+                    print(succ_cluster)
                     offset = self.cluster[succ_cluster].min
                     return self.index(succ_cluster, offset)
 
@@ -104,6 +105,29 @@ class VanEmdeBoas:
                 else:
                     offset = self.cluster[pred_cluster].max
                     return self.index(pred_cluster, offset)
+
+    def insert_to_empty(self, x):
+        self.min = x
+        self.max = x
+
+    def insert(self, x):
+        if self.min is None:
+            self.insert_to_empty(x)
+        else:
+            if x < self.min:
+                tmp = self.min
+                self.min = x
+                x = tmp
+
+            if self.u > 2:
+                if self.cluster[self.high(x)].min is None:
+                    self.summary.insert(self.high(x))
+                    self.cluster[self.high(x)].insert_to_empty(self.low(x))
+                else:
+                    self.cluster[self.high(x)].insert(self.low(x))
+
+            if x > self.max:
+                self.max = x
 
 
 if __name__ == '__main__':
