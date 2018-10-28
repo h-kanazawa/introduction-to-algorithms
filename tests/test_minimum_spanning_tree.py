@@ -30,11 +30,11 @@ def gen_graph():
         i: [(c, 2), (g, 6), (h, 7)],
     }
 
-    return graph
+    return graph, (a, b, c, d, e, f, g, h)
 
 
 def test_has_weight_error():
-    g = gen_graph()
+    g, _ = gen_graph()
     assert g.has_weight_error() is False
 
 
@@ -42,7 +42,7 @@ def test_mst_kruskal():
     """Figure 23.1 and 23.4
     """
 
-    g = gen_graph()
+    g, _ = gen_graph()
     A = mst_kruskal(g)
     actual = set([frozenset([list(a)[0].v, list(a)[1].v]) for a in A])
 
@@ -70,3 +70,31 @@ def test_mst_kruskal():
         frozenset(['d', 'e']),
     ])
     assert actual == expected1 or actual == expected2
+
+
+def test_mst_prim():
+    """Figure 23.5
+    """
+    G, vs = gen_graph()
+    a, b, c, d, e, f, g, h = vs
+
+    mst_prim(G, a)
+
+    assert a.π is None
+    assert b.π == a
+    assert c.π == b
+    assert d.π == c
+    assert e.π == d
+    assert f.π == c
+    assert g.π == f
+    assert h.π == g
+
+    assert a.key == 0
+    assert b.key == 4
+    assert c.key == 8
+    assert d.key == 7
+    assert e.key == 9
+    assert f.key == 4
+    assert g.key == 2
+    assert h.key == 1
+

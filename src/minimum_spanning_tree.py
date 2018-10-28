@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import heapq
 from operator import itemgetter
 from src.disjoint_set import *
 
@@ -7,6 +8,18 @@ from src.disjoint_set import *
 class V:
     def __init__(self, v):
         self.v = v
+        self.key = float('inf')
+        self.π = None
+
+    def __lt__(self, other):
+        return self.v < other.v
+
+    def __str__(self):
+        return 'v:{}, key:{}, π:{}'.format(
+            self.v,
+            self.key,
+            self.π.v if self.π is not None else 'None'
+        )
 
 
 class G:
@@ -59,6 +72,32 @@ def mst_kruskal(G):
             TreeSet -= {should_be_deleted}
 
     return A
+
+
+def mst_prim(G, r):
+    for u in G.V():
+        u.key = float('inf')
+        u.π = None
+    r.key = 0
+
+    Q = []
+    for u in G.V():
+        heapq.heappush(Q, (u.key, u))
+
+    edges = G.E()
+    weightDict = {}
+    for edge in edges:
+        weightDict[edge[0]] = edge[1]
+
+    while len(Q) != 0:
+        _, u = heapq.heappop(Q)
+        for v, w in G.Adj[u]:
+            vu_set = frozenset([v, u])
+            vu_weight = weightDict[vu_set]
+            q = [vv for p, vv in Q]
+            if v in q and vu_weight < v.key:
+                v.π = u
+                v.key = weightDict[vu_set]
 
 
 if __name__ == '__main__':
