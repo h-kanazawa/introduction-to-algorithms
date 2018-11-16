@@ -39,3 +39,14 @@ def test_naive_string_matcher():
     T = [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1]
     P = [0, 0, 0, 1]
     assert naive_string_matcher(T, P) == [1, 5, 11]
+
+
+def test_rabin_karp():
+    T = [int(i) for i in list('2359023141526739921')]
+    P = [int(i) for i in list('31415')]
+    assert rabin_karp(T, P, 13) == ([6], 1)
+
+    # 32.2-1
+    T = [int(i) for i in list('3141592653589793')]
+    P = [int(i) for i in list('26')]
+    assert rabin_karp(T, P, 11) == ([6], 3)
