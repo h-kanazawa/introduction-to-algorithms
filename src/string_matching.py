@@ -78,5 +78,6 @@ def rabin_karp(T: List, P: List, q: int) -> List[int]:
 
     return (shifts, fs)
 
+
 if __name__ == '__main__':
     print('x')
