@@ -63,5 +63,16 @@ def faster_all_pairs_shortest_paths(W):
     return L[k]
 
 
+def floyd_warshall(W):
+    n = W.shape[0]
+    D = [W]
+    for k in range(0, n):
+        D.append(np.zeros((n, n)))
+        for i in range(0, n):
+            for j in range(0, n):
+                D[k + 1][i][j] = min(D[k][i][j], D[k][i][k - 1] + D[k][k - 1][j])
+    return D[n]
+
+
 if __name__ == '__main__':
     print('x')

@@ -94,4 +94,4 @@ This is a notebook of [*Introduction to Algorithms, Third Edition*](https://mitp
 
 ## 25
 
-[]()
+[All Pairs Shortest Path](src/all_pairs_shortest_path.py)

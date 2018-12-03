@@ -56,3 +56,9 @@ def test_faster_all_pairs_shortest_paths():
     W = gen_graph()
     Lm = faster_all_pairs_shortest_paths(W)
     assert Lm.tolist() == [[0, 1, 3, 6], [7, 0, 2, 5], [5, 6, 0, 3], [INF, INF, INF, 0]]
+
+
+def test_floyd_warshall():
+    W = gen_graph()
+    D = floyd_warshall(W)
+    assert D.tolist() == [[0, 1, 3, 6], [7, 0, 2, 5], [5, 6, 0, 3], [INF, INF, INF, 0]]
