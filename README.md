@@ -1,6 +1,6 @@
 # Notebook: Introduction to Algorighms
 
-This is a notebook of [*Introduction to Algorithms, Third Edition*](https://mitpress.mit.edu/books/introduction-algorithms) for myself.
+This is my notebook when I read [*Introduction to Algorithms, Third Edition*](https://mitpress.mit.edu/books/introduction-algorithms).
 
 ## 2
 
@@ -95,3 +95,18 @@ This is a notebook of [*Introduction to Algorithms, Third Edition*](https://mitp
 ## 25
 
 [All Pairs Shortest Path](src/all_pairs_shortest_path.py)
+
+## 31
+
+[GCD, Euclidean Algorithm](src/euclid.py)
+[Chinese remainder theorem](src/chinese_remainder_theorem.py)
+[Modular Exponentiation](modular_exponentiation.py)
+
+## 32
+
+[String Matching, Rabin-Karp](src/string_matching.py)
+[Finite Automaton Matcher](src/finite_automaton_matcher.py)
+
+## 33
+
+[Segments Intersect Detection](src/geometry.py)
