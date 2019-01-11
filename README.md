@@ -70,7 +70,7 @@ This is my notebook when I read [*Introduction to Algorithms, Third Edition*](ht
 
 ## 21
 
-- [Disjoing Set](src/disjoint_set.py)
+- [Disjoint Set](src/disjoint_set.py)
 
 ## 22
 
